@@ -15,7 +15,7 @@ const Header = () => {
     <div className={styles.wrapper}>
       <div className={styles.content}>
         <div className={styles.logoContainer}>
-          <Image className={styles.logo} src={Logo} height={40} width={200} />
+          <Image className={styles.logo} src={Logo} height={40} width={200} alt="logo" />
         </div>
         <div className={styles.bannerNav}>
           <div className="">Our Story</div>
