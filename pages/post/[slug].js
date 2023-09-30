@@ -4,8 +4,9 @@ import Recommendations from "../../components/Recommendations";
 
 const Post = () => {
   return (
-    <div>
+    <div className="flex">
       <ReadersNav />
+      <div />
       <Recommendations />
     </div>
   );
