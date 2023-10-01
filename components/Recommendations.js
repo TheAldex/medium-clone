@@ -29,11 +29,15 @@ const styles = {
   recommendationAuthorContainer: "flex items-center gap-[.6rem]",
   recommendationAuthorName: "text-sm",
   recommendationTitle: "font-bold",
-  recommendationThumbnailContainer: "",
-  recommendationThumbnail: "",
+  recommendationThumbnailContainer:
+    "flex flex-1 items-center justify-center h-[4rem] w-[4rem]",
+  recommendationThumbnail: "object-cover",
+  articleContentWrapper:
+    "flex items-center justify-between cursor-pointer my-[1rem]",
+  articleContent: "flex-[4]",
 };
 
-const Recommendations = () => {
+const Recommendations = ({ author }) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.accentedButton}>Get unlimited access</div>
@@ -61,25 +65,36 @@ const Recommendations = () => {
       <div className={styles.recommendationContainer}>
         <div className={styles.title}>More from Medium</div>
         <div className={styles.articlesContainer}>
-          <div className={styles.recommendationAuthorContainer}>
-            <div className={styles.recommendationAuthorProfileImageContainer}>
-              <Image src={Qazi} alt="author-image" height={100} width={100} />
+          <div className={styles.articleContentWrapper}>
+            <div className={styles.articleContent}>
+              <div className={styles.recommendationAuthorContainer}>
+                <div
+                  className={styles.recommendationAuthorProfileImageContainer}
+                >
+                  <Image
+                    src={Qazi}
+                    alt="author-image"
+                    height={100}
+                    width={100}
+                  />
+                </div>
+                <div className={styles.recommendationAuthorName}>
+                  Alejandro Delgado
+                </div>
+              </div>
+              <div className={styles.recommendationTitle}>
+                The Ultimate Javascript Course for Beginners
+              </div>
             </div>
-            <div className={styles.recommendationAuthorName}>
-              Alejandro Delgado
+            <div className={styles.recommendationThumbnailContainer}>
+              <Image
+                src={JSLogo}
+                alt="article-image"
+                height={100}
+                width={100}
+                className={styles.recommendationThumbnail}
+              />
             </div>
-            <div className={styles.recommendationTitle}>
-              The Ultimate Javascript Course for Beginners
-            </div>
-          </div>
-          <div className={styles.recommendationThumbnailContainer}>
-            <Image
-              src={JSLogo}
-              alt="article-image"
-              height={100}
-              width={100}
-              className={styles.recommendationThumbnail}
-            />
           </div>
         </div>
       </div>
