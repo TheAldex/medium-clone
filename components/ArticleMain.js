@@ -1,6 +1,3 @@
-import Image from "next/image";
-import Qazi from "../static/qazi.jpg";
-import Banner from "../static/banner.png";
 import { AiFillPlayCircle } from "react-icons/ai";
 import { IoLogoTwitter } from "react-icons/io";
 import { FaFacebook } from "react-icons/fa";
@@ -29,15 +26,15 @@ const styles = {
   articleText: "font-mediumSerif text-[1.4rem] text-[#292929]",
 };
 
-const ArticleMain = () => {
+const ArticleMain = ({ post, author }) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.content}>
         <div className={styles.postHeaderContainer}>
           <div className={styles.authorContainer}>
             <div className={styles.authorProfileImageContainer}>
-              <Image
-                src={Qazi}
+              <img
+                src={author?.data?.imageUrl}
                 alt="profile-image"
                 width={100}
                 height={100}
@@ -45,9 +42,15 @@ const ArticleMain = () => {
               />
             </div>
             <div className={styles.column}>
-              <div>Alejandro Delgado</div>
+              <div>{author?.data?.name}</div>
               <div className={styles.postDetails}>
-                <span>June 15 • 7 min read</span>
+                <span>
+                  {new Date(post?.data?.postedOn).toLocaleString("en-US", {
+                    day: "numeric",
+                    month: "short",
+                  })}{" "}
+                  • {post?.data?.postLength} min read
+                </span>
                 <span className={styles.listenButton}>
                   <AiFillPlayCircle /> Listen
                 </span>
@@ -66,32 +69,25 @@ const ArticleMain = () => {
         </div>
         <div className={styles.articleMainContainer}>
           <div className={styles.bannerContainer}>
-            <Image src={Banner} alt="banner" className={styles.image} />
+            <img
+              src={post?.data?.bannerImage}
+              alt="banner"
+              className={styles.image}
+            />
           </div>
-          <h1 className={styles.title}>
-            The Quantum Theory: A Brand New World
-          </h1>
+          <h1 className={styles.title}>{post?.data?.title}</h1>
           <h4 className={styles.subtitle}>
-            <div>Alejandro Delgado, June 15, 2023</div>
             <div>
-              Brief: An Introduction to the world of atomic particles and laws.
+              {author?.data?.name},{" "}
+              {new Date(post?.data?.postedOn).toLocaleString("en-US", {
+                day: "numeric",
+                month: "short",
+                year: "numeric",
+              })}
             </div>
+            <div>{post?.data?.brief}</div>
           </h4>
-          <div className={styles.articleText}>
-            At vero eos et accusamus et iusto odio dignissimos ducimus qui
-            blanditiis praesentium voluptatum deleniti atque corrupti quos
-            dolores et quas molestias excepturi sint occaecati cupiditate non
-            provident, similique sunt in culpa qui officia deserunt mollitia
-            animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis
-            est et expedita distinctio. Nam libero tempore, cum soluta nobis est
-            eligendi optio cumque nihil impedit quo minus id quod maxime placeat
-            facere possimus, omnis voluptas assumenda est, omnis dolor
-            repellendus. Temporibus autem quibusdam et aut officiis debitis aut
-            rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint
-            et molestiae non recusandae. Itaque earum rerum hic tenetur a
-            sapiente delectus, ut aut reiciendis voluptatibus maiores alias
-            consequatur aut perferendis doloribus asperiores repellat.
-          </div>
+          <div className={styles.articleText}>{post?.data?.body}</div>
         </div>
       </div>
     </div>

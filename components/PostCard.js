@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { FiBookmark } from "react-icons/fi";
-import Logo from "../static/logo.png";
 
 import { db } from "../firebase";
 import { doc, getDoc } from "firebase/firestore";
@@ -42,12 +40,12 @@ const PostCard = ({ post }) => {
         <div className={styles.postDetails}>
           <div className={styles.authorContainer}>
             <div className={styles.authorImageContainer}>
-              <Image
-                src={Logo}
+              <img
+                src={authorData?.imageUrl}
                 alt="author-image"
                 className={styles.authorImage}
-                width={40}
                 height={40}
+                width={40}
               />
             </div>
             <div className={styles.authorName}>{authorData?.name}</div>
@@ -56,12 +54,12 @@ const PostCard = ({ post }) => {
           <div className={styles.briefing}>{post?.data?.brief}</div>
           <div className={styles.detailsContainer}>
             <span className={styles.articleDeatils}>
-              {new Date(post.data.postedOn).toLocaleString("en-US", {
+              {new Date(post?.data?.postedOn).toLocaleString("en-US", {
                 day: "numeric",
                 month: "short",
               })}{" "}
               • {post.data.postLength} min read •{" "}
-              <span className={styles.category}>{post.data.category}</span>
+              <span className={styles.category}>{post?.data?.category}</span>
             </span>
             <span className={styles.bookmarkContainer}>
               <FiBookmark className="w-5 h-5" />
@@ -69,9 +67,9 @@ const PostCard = ({ post }) => {
           </div>
         </div>
         <div className={styles.thumbnailContainer}>
-          <Image
-            src={`https://res.cloudinary.com/demo/image/fetch/${post.data.bannerImage}`}
-            alt={`https://res.cloudinary.com/demo/image/fetch/${post.data.bannerImage}`}
+          <img
+            src={post?.data?.bannerImage}
+            alt="banner-img"
             height={100}
             width={100}
           />
